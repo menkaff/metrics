@@ -17,6 +17,10 @@ class PrometheusServiceProvider extends ServiceProvider
         if (app() instanceof \Illuminate\Foundation\Application) {
             $kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
             $kernel->pushMiddleware(PrometheusMiddleware::class);
+        }else{
+            $this->app->middleware([
+                PrometheusMiddleware::class
+             ]);
         }
 
     }
