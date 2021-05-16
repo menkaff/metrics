@@ -4,7 +4,7 @@
 
 ## Installation
 
-First add these repositories in 
+First add these lines repositories in 
 
 > composer.json
 
@@ -20,6 +20,7 @@ First add these repositories in
 Then run these commands
 
     composer require promphp/prometheus_client_php:dev-feat/add-summary-support
+    composer require menkaff/metrics
     
 And then if you have a lumen project just add this line in 
 
