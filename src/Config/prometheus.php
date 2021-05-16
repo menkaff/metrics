@@ -53,7 +53,7 @@ return [
 
         'redis' => [
             'host' => env('REDIS_HOST', 'redis'),
-            'password' => env('REDIS_HOST', null),
+            'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
             'timeout' => 0.1,
             'read_timeout' => 10,

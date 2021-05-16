@@ -21,7 +21,7 @@ class MetricsController extends Controller
     public function __construct()
     {
         if (app() instanceof \Illuminate\Foundation\Application) {
-            $this->responseFactory = new \Illuminate\Contracts\Routing\ResponseFactory;
+            $this->responseFactory = response();
         } else {
             $this->responseFactory = new \Laravel\Lumen\Http\ResponseFactory;
         }
