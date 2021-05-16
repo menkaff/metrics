@@ -1,11 +1,11 @@
 {
-    "name": "podro/metrics",
+    "name": "menkaff/metrics",
     "description": "Prometheus metric feature",
     "license": "MIT",
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Podro\\Metrics\\": "src/"
+            "Menkaff\\Metrics\\": "src/"
         }
     },
     "require": {
@@ -23,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Podro\\Metrics\\Providers\\PrometheusServiceProvider"
+                "Menkaff\\Metrics\\Providers\\PrometheusServiceProvider"
             ]
         }
     },

@@ -1,9 +1,9 @@
 <?php
 
-namespace Podro\Metrics\Providers;
+namespace Menkaff\Metrics\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Podro\Metrics\Middleware\PrometheusMiddleware;
+use Menkaff\Metrics\Middleware\PrometheusMiddleware;
 
 class PrometheusServiceProvider extends ServiceProvider
 {

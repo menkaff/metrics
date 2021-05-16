@@ -1,6 +1,6 @@
 <?php
 
-namespace Podro\Metrics\Controllers;
+namespace Menkaff\Metrics\Controllers;
 
 use App\Http\Controllers\Controller;
 use Laravel\Lumen\Http\ResponseFactory;

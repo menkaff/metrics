@@ -1,6 +1,6 @@
 <?php
 
-namespace Podro\Metrics\Middleware;
+namespace Menkaff\Metrics\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
