@@ -2,12 +2,18 @@
 
 namespace Menkaff\Metrics\Controllers;
 
-use App\Http\Controllers\Controller;
 use Laravel\Lumen\Http\ResponseFactory;
 use Prometheus\RenderTextFormat;
 use Symfony\Component\HttpFoundation\Response;
 
-class MetricsController extends Controller
+if (class_exists('\Laravel\Lumen\Routing\Controller')) {
+    class DynamicParent extends \Laravel\Lumen\Routing\Controller
+    {}
+} else {
+    class DynamicParent extends \Illuminate\Routing\Controller
+    {}
+}
+class MetricsController extends DynamicParent
 {
     /**
      * @var ResponseFactory
@@ -25,7 +31,7 @@ class MetricsController extends Controller
         } else {
             $this->responseFactory = new \Laravel\Lumen\Http\ResponseFactory;
         }
-        
+
     }
 
     /**
