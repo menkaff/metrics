@@ -9,12 +9,12 @@ First add these repositories in
 > composer.json
 
     {
-    "type": "git",
-    "url": "https://github.com/mp3000mp/prometheus_client_php"
+     "type": "git",
+     "url": "https://github.com/mp3000mp/prometheus_client_php"
     },
     {
-    "type": "git",
-    "url": "https://github.com/menkaff/metrics"
+     "type": "git",
+     "url": "https://github.com/menkaff/metrics"
     }
     
 Then run these commands
