@@ -52,7 +52,7 @@ class PrometheusMiddleware
 
         $this->service = config('prometheus.service');
 
-        $this->platform = 'http';
+        $this->platform = 'HTTP';
 
         $this->labels = [
             'method',
@@ -73,9 +73,17 @@ class PrometheusMiddleware
         $start = microtime(true);
         $response = $next($request);
         $duration = microtime(true) - $start;
+        $params = $request->route()->parameters();
+        $path = $request->path();
+
+        if (count($params)) {
+            foreach ($params as $key => $value) {
+                $path = str_replace($value, "{" . $key . "}", $path);
+            }
+        }
 
         $labelValues = [
-            $request->method() . ' ' . $request->path(),
+            $request->method() . ' ' . $path,
             $this->service,
             $this->platform,
         ];
