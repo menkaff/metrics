@@ -75,8 +75,10 @@ class PrometheusMiddleware
         $duration = microtime(true) - $start;
         if (app() instanceof \Illuminate\Foundation\Application) {
             $params = $request->route()->parameters();
-        } else {
+        } elseif (isset($request->route()[2])) {
             $params = $request->route()[2];
+        } else {
+            $params = [];
         }
         $path = $request->path();
 
