@@ -73,10 +73,14 @@ class PrometheusMiddleware
         $start = microtime(true);
         $response = $next($request);
         $duration = microtime(true) - $start;
-        $params = $request->route()->parameters();
+        if (app() instanceof \Illuminate\Foundation\Application) {
+            $params = $request->route()->parameters();
+        } else {
+            $params = $request->route()[2];
+        }
         $path = $request->path();
 
-        if (count($params)) {
+        if (isset($params) && count($params)) {
             foreach ($params as $key => $value) {
                 $path = str_replace($value, "{" . $key . "}", $path);
             }
