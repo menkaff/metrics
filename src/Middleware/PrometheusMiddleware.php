@@ -70,9 +70,9 @@ class PrometheusMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        $start = microtime(true)/1000;
+        $start = microtime(true)*1000;
         $response = $next($request);
-        $duration = (microtime(true)/1000) - $start;
+        $duration = (microtime(true)*1000) - $start;
         $route = $request->route();
         if (app() instanceof \Illuminate\Foundation\Application && isset($route)) {
             $params = $route->parameters();
