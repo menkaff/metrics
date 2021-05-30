@@ -21,7 +21,7 @@ return [
     |
     | The service to use as a name of service.
     |
-    | This will typically be the name of your project, eg: 'main'.
+    | This will typically be the name of your service, eg: 'main'.
     |
      */
 
@@ -34,7 +34,6 @@ return [
     |
     | The path at which prometheus metrics are exported.
     |
-    | This is only applicable if metrics_route_enabled is set to true.
     |
      */
 
@@ -42,12 +41,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Metrics Route Path
+    | Metrics Filter Path
     |--------------------------------------------------------------------------
     |
-    | The path at which prometheus metrics are exported.
-    |
-    | This is only applicable if metrics_route_enabled is set to true.
+    | This filter specifies the routes that should be monitored.
     |
      */
 
