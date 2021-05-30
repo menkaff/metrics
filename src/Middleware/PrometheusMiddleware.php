@@ -3,7 +3,6 @@
 namespace Menkaff\Metrics\Middleware;
 
 use Closure;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,43 +69,39 @@ class PrometheusMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        $start = microtime(true)*1000;
+        $start = microtime(true);
         $response = $next($request);
-        $duration = (microtime(true)*1000) - $start;
-        $route = $request->route();
-        if (app() instanceof \Illuminate\Foundation\Application && isset($route)) {
-           try{
-            $params = $request->route()->parameters();
-            }catch(Exception $exception){
-                $params=[];
+        if ($request->is(config('prometheus.metrics_filter_path'))) {
+            $duration = microtime(true) - $start;
+            if (app() instanceof \Illuminate\Foundation\Application) {
+                $params = $request->route()->parameters();
+            } elseif (isset($request->route()[2])) {
+                $params = $request->route()[2];
+            } else {
+                $params = [];
             }
-        } elseif (isset($route[2])) {
-            $params = $route[2];
-        } else {
-            $params = [];
-        }
-        $path = $request->path();
+            $path = $request->path();
 
-        if (isset($params) && count($params)) {
-            foreach ($params as $key => $value) {
-                $path = str_replace($value, "{" . $key . "}", $path);
+            if (isset($params) && count($params)) {
+                foreach ($params as $key => $value) {
+                    $path = str_replace($value, "{" . $key . "}", $path);
+                }
             }
-        }
 
-        $labelValues = [
-            $request->method() . ' ' . $path,
-            $this->service,
-            $this->platform,
-        ];
+            $labelValues = [
+                $request->method() . ' ' . $path,
+                $this->service,
+                $this->platform,
+            ];
 
-        $this->increaseSLITotal($labelValues);
+            $this->increaseSLITotal($labelValues);
 
-        if ($this->isResponseSuccessful($response)) {
-            $this->increaseSLISuccess($labelValues);
-            $this->observeSLIDurationSummary($duration, $labelValues);
-        } else {
-            $this->increaseSLIFail($labelValues);
+            if ($this->isResponseSuccessful($response)) {
+                $this->increaseSLISuccess($labelValues);
+                $this->observeSLIDurationSummary($duration, $labelValues);
+            } else {
+                $this->increaseSLIFail($labelValues);
+            }
         }
 
         return $response;

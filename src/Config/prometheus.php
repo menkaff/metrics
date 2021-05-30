@@ -42,6 +42,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Metrics Route Path
+    |--------------------------------------------------------------------------
+    |
+    | The path at which prometheus metrics are exported.
+    |
+    | This is only applicable if metrics_route_enabled is set to true.
+    |
+     */
+
+    'metrics_filter_path' => env('PROMETHEUS_METRICS_FILTER_PATH', 'api/*'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Storage Adapters
     |--------------------------------------------------------------------------
     |
