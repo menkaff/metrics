@@ -71,9 +71,9 @@ class PrometheusMiddleware
     {
         $start = microtime(true);
         $response = $next($request);
-        if (app() instanceof \Illuminate\Foundation\Application && $request->route()) {
+        if ($request->is(config('prometheus.metrics_filter_path'))) {
             $duration = microtime(true) - $start;
-            if (app() instanceof \Illuminate\Foundation\Application) {
+            if (app() instanceof \Illuminate\Foundation\Application && $request->route()) {
                 $params = $request->route()->parameters();
             } elseif (isset($request->route()[2])) {
                 $params = $request->route()[2];
