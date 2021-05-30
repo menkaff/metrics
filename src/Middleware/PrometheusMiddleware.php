@@ -3,6 +3,7 @@
 namespace Menkaff\Metrics\Middleware;
 
 use Closure;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,7 +76,11 @@ class PrometheusMiddleware
         $duration = (microtime(true)*1000) - $start;
         $route = $request->route();
         if (app() instanceof \Illuminate\Foundation\Application && isset($route)) {
-            $params = $route->parameters();
+           try{
+            $params = $request->route()->parameters();
+            }catch(Exception $exception){
+                $params=[];
+            }
         } elseif (isset($route[2])) {
             $params = $route[2];
         } else {
