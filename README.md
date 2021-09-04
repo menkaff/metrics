@@ -4,14 +4,10 @@
 
 ## Installation
 
-First add these lines repositories in 
+First add these lines into your Composer.json
 
 > composer.json
 
-    {
-     "type": "git",
-     "url": "https://github.com/mp3000mp/prometheus_client_php"
-    },
     {
      "type": "git",
      "url": "https://github.com/menkaff/metrics"
@@ -19,10 +15,9 @@ First add these lines repositories in
     
 Then run these commands
 
-    composer require promphp/prometheus_client_php:dev-feat/add-summary-support
     composer require menkaff/metrics
     
-And then if you have a lumen project just add this line in 
+If you have a lumen project just add this line in 
 
 > bootsratp/app.php
 
