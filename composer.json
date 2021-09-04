@@ -10,7 +10,7 @@
     },
     "require": {
         "php": "^7.1.3",
-        "promphp/prometheus_client_php": "^2.2"
+        "promphp/prometheus_client_php": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.5"
