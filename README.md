@@ -4,16 +4,7 @@
 
 ## Installation
 
-First add these lines into your Composer.json
-
-> composer.json
-
-    {
-     "type": "git",
-     "url": "https://github.com/menkaff/metrics"
-    }
-    
-Then run these commands
+Run these commands
 
     composer require menkaff/metrics
     
