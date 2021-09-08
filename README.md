@@ -4,7 +4,7 @@
 
 ## Installation
 
-Run these commands
+Install via composer in Laravel or Lumen
 
     composer require menkaff/metrics
     
